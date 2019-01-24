@@ -1,14 +1,12 @@
 const fs = require('fs');
+const send = require('send');
 const express = require('express');
 const app = express();
 
 app.use(express.static('public'));
 
 app.get('/stream', (req, res) => {
-  let stream = fs.createReadStream('./public/comp 250.mp3');
-  res.type('audio/mpeg');
-  stream.pipe(res);
-  console.log('request incoming');
+  send(req, './public/comp 250.mp3').pipe(res);
 });
 
 app.get('/test', (req, res) => {

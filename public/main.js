@@ -1,10 +1,11 @@
 const audioTag = document.getElementById('audio-tag');
+const audioElem = document.createElement('audio');
 
-function loadSound() {
-  var request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:3000/test", true);
-  request.onload = function() {
-    console.log(request.response);
-  };
-  request.send();
+function create() {
+  audioElem.setAttribute('controls', '');
+  document.body.appendChild(audioElem);
 };
+
+function update() {
+  audioElem.setAttribute('src', 'http://localhost:3000/stream');
+}
