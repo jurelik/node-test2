@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jurelik/node-test2#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "send": "^0.16.2"
+    "send": "^0.16.2",
+    "youtube-mp3-downloader": "^0.5.3"
   }
 }
