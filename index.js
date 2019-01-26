@@ -18,6 +18,8 @@ app.get('/stream/:id', (req, res) => {
 
 app.get('/yt/:id', (req, res) => {
   const id = req.params.id;
+  res.type('audio/mpeg');
+  
   console.log('request made');
   YD.download(id, `${id}.mp3`);
   YD.on('finished', (err, data) => {
@@ -27,7 +29,6 @@ app.get('/yt/:id', (req, res) => {
 
     //   });
     // }, 3000);
-    res.type('audio/mpeg');
     res.end('done');
   });
 });
