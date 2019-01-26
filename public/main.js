@@ -1,15 +1,15 @@
-const audioTag = document.getElementById('audio-tag');
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
 
 function create(id) {
   const audioElem = document.createElement('audio');
   audioElem.setAttribute('controls', '');
   audioElem.setAttribute('src', `http://localhost:3000/stream/${id}`);
+  audioElem.id = "audio";
   document.body.appendChild(audioElem);
-};
 
-function update() {
-  audioElem.setAttribute('src', 'http://localhost:3000/stream');
-}
+  // connect();
+};
 
 function get(id) {
   const request = new XMLHttpRequest();
@@ -19,4 +19,11 @@ function get(id) {
     create(id);
   };
   request.send();
-}
+};
+
+function connect() {
+  const audioElem = document.getElementById('audio');
+  const source = context.createMediaElementSource(audioElem);
+
+  source.connect(context.destination);
+};
