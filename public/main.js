@@ -6,6 +6,8 @@ function create(id) {
   audioElem.setAttribute('controls', '');
   audioElem.setAttribute('src', `http://localhost:3000/stream/${id}`);
   audioElem.id = "audio";
+  audioElem.mozPreservesPitch = false;
+  audioElem.webkitPreservesPitch = false;
   document.body.appendChild(audioElem);
 
   // connect();
@@ -25,5 +27,24 @@ function connect() {
   const audioElem = document.getElementById('audio');
   const source = context.createMediaElementSource(audioElem);
 
+  console.dir(audioElem);
+
   source.connect(context.destination);
 };
+
+function warble() {
+  const audioElem = document.getElementById('audio');
+
+  console.log('sup');
+
+  setTimeout(() => {
+    if (audioElem.playbackRate == 1) {
+      audioElem.playbackRate = 0.97;
+      warble();
+    }
+    else {
+      audioElem.playbackRate = 1;
+      warble()
+    }
+  }, 20)
+}
